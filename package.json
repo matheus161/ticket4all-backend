@@ -1,0 +1,35 @@
+{
+  "name": "mongo-express-template",
+  "version": "1.0.0",
+  "description": "Template para novos projetos utilizando mongo e express.",
+  "main": "index.js",
+  "scripts": {
+    "build": "sucrase ./src -d ./build --transforms imports",
+    "start": "node build/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "cross-env NODE_ENV=test && jest --detectOpenHandles --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheus161/mongo-express-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheus161/mongo-express-template/issues"
+  },
+  "homepage": "https://github.com/matheus161/mongo-express-template#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "sucrase": "^3.20.3"
+  }
+}
