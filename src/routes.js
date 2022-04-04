@@ -22,7 +22,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/index', function(req,res){
+router.get('/tickets', function(req,res){
     const tickets = [
         {
           "id": "12738972",
