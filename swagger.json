@@ -1,0 +1,498 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Rotas da aplicação do ticker4all, trabalho final da disciplina de Banco de Dados da Universidade Federal de Sergipe",
+    "version": "1.0.0",
+    "title": "ticket4all",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "teteulp@academico.ufs.br"
+    }
+  },
+  "tags": [
+    {
+      "name": "organizador",
+      "description": "Rotas de Organizador"
+    },
+    {
+      "name": "categoria",
+      "description": "Rotas de Categoria"
+    },
+    {
+      "name": "evento",
+      "description": "Rotas de Evento"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/organizador": {
+      "post": {
+        "tags": [
+          "organizador"
+        ],
+        "summary": "Create organizador",
+        "description": "Rota que cria um organizador",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created organizador object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Organizador"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Organizador"
+            }
+          },
+          "400": {
+            "description": "Organizador already exists"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "organizador"
+        ],
+        "summary": "Get all organizadores",
+        "description": "Rota que retornas os organizadores",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Organizador"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/categoria": {
+      "post": {
+        "tags": [
+          "categoria"
+        ],
+        "summary": "Create categoria",
+        "description": "Rota que cria um categoria",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created categoria object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Categoria"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Categoria"
+            }
+          },
+          "400": {
+            "description": "Categoria already exists"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "categoria"
+        ],
+        "summary": "Get all categorias",
+        "description": "Rota que retornas os categorias",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Categoria"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/categoria/{id}": {
+      "get": {
+        "tags": [
+          "categoria"
+        ],
+        "summary": "Get categoria by id",
+        "description": "retornar uma categoria específica",
+        "operationId": "getCategoriaById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that needs to be fetched. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Categoria"
+            }
+          },
+          "404": {
+            "description": "Categoria not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "categoria"
+        ],
+        "summary": "Update categoria",
+        "operationId": "updateCategoria",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated categoria object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Categoria"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Categoria"
+            }
+          },
+          "400": {
+            "description": "Categoria already exists"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "categoria"
+        ],
+        "summary": "Delete categoria",
+        "operationId": "deleteCategoria",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categoria deleted with success"
+          },
+          "404": {
+            "description": "Categoria not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/evento": {
+      "post": {
+        "tags": [
+          "evento"
+        ],
+        "summary": "Create evento",
+        "description": "Rota que cria um evento",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created evento object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Evento"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Evento"
+            }
+          },
+          "400": {
+            "description": "Categoria already exists"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "evento"
+        ],
+        "summary": "Get all eventos",
+        "description": "Rota que retornas os eventos",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Evento"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/evento/{id}": {
+      "get": {
+        "tags": [
+          "categoria"
+        ],
+        "summary": "Get categoria by id",
+        "description": "retornar uma categoria específica",
+        "operationId": "getEventoById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that needs to be fetched. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Evento"
+            }
+          },
+          "404": {
+            "description": "Evento not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "evento"
+        ],
+        "summary": "Update evento",
+        "operationId": "updateEvento",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated evento object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Evento"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Evento"
+            }
+          },
+          "400": {
+            "description": "Evento already exists"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "evento"
+        ],
+        "summary": "Delete evento",
+        "operationId": "deleteEvento",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Evento deleted with success"
+          },
+          "404": {
+            "description": "Evento not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Organizador": {
+      "type": "object",
+      "required": [
+        "email",
+        "password",
+        "cnpj",
+        "name"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "cnpj": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Organizador"
+      }
+    },
+    "Categoria": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Categoria"
+      }
+    },
+    "Evento": {
+      "type": "object",
+      "required": [
+        "titulo",
+        "organizador",
+        "categoria"
+      ],
+      "properties": {
+        "titulo": {
+          "type": "string"
+        },
+        "descricao": {
+          "type": "string"
+        },
+        "datas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "organizador": {
+          "type": "string"
+        },
+        "categoria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "xml": {
+        "name": "Evento"
+      }
+    }
+  }
+}

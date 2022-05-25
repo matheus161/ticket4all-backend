@@ -7,8 +7,15 @@ import OrganizadorController from './controllers/OrganizadorController';
 import { organizadorRules } from './models/Organizador';
 import EventoController from './controllers/EventoController';
 import { eventoRules } from './models/Evento';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../swagger.json';
 
 const router = Router();
+
+// Rotas da Documentação
+router.use('/api', swaggerUi.serve);
+router.get('/api', swaggerUi.setup(swaggerDocument));
+routes.get('/', (req, res) => res.json({ message: 'Bem vindo ao ticket4all!' }));
 
 // Rotas de Categoria
 router.post('/api/categoria/', validate(categoriaRules), CategoriaController.store)
