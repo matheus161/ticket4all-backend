@@ -1,4 +1,5 @@
-# mongo-express-template
-Template para novos projetos utilizando mongo e express.
+# ticket4all
+
+API Rest para o projeto da disciplina de Banco de Dados I (Universidade Federal de Sergipe)
 
 
