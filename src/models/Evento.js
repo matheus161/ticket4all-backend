@@ -21,6 +21,10 @@ const EventoSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Categoria'
         }],
+        preco: {
+            type: String,
+            required: true
+        },
     },
 
     { timeStamps: true },
@@ -35,7 +39,8 @@ const eventoRules = Joi.object({
     descricao: Joi.string(),
     datas: Joi.array(),
     organizador: Joi.string().required(),
-    categoria: Joi.array()
+    categoria: Joi.array(),
+    preco: Joi.string().required(),
 });
 
 export { Evento, eventoRules };
