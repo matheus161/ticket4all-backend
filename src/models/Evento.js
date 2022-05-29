@@ -14,8 +14,7 @@ const EventoSchema = new Schema(
             type: String
         }],
         organizador: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Organizador',
+            type: String,
             required: true
         },
         categoria: [{

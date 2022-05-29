@@ -3,8 +3,6 @@ import CategoriaController from './controllers/CategoriaController';
 import { categoriaRules } from './models/Categoria';
 import validate from './middlewares/validate';
 import verifyId from './middlewares/verifyId';
-import OrganizadorController from './controllers/OrganizadorController';
-import { organizadorRules } from './models/Organizador';
 import EventoController from './controllers/EventoController';
 import { eventoRules } from './models/Evento';
 import swaggerUi from 'swagger-ui-express';
@@ -23,10 +21,6 @@ router.get('/api/categoria/', CategoriaController.index);
 router.get('/api/categoria/:id', verifyId, CategoriaController.show);
 router.put('/api/categoria/:id', verifyId, validate(categoriaRules), CategoriaController.update);
 router.delete('/api/categoria/:id', verifyId, CategoriaController.remove);
-
-// Rotas de Organizador
-router.post('/api/organizador/', validate(organizadorRules), OrganizadorController.store);
-router.get('/api/organizador/', OrganizadorController.index);
 
 // Rotas de Evento
 router.post('/api/evento/', validate(eventoRules), EventoController.store)
