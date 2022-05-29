@@ -1,5 +1,4 @@
 import { Evento } from "../models/Evento";
-import { Organizador } from "../models/Organizador";
 import { Categoria } from "../models/Categoria";
 
 async function store(req, res) {
@@ -7,10 +6,6 @@ async function store(req, res) {
         // Checando se já existe um Evento no banco com o titulo passado
         if (await Evento.findOne({ titulo: req.body.titulo }))
             return res.status(400).json({ message: 'Evento already exists' });
-        
-        // Checando se passou um organizador valido
-        if (!await Organizador.findById(req.body.organizador))
-            return res.status(405).json({ message: 'Organizador not valid' });
     
         // Checando se passou categorias validas
         if (req.body.categoria !== null) {
@@ -33,7 +28,7 @@ async function store(req, res) {
 
 async function index(req, res) {
     try {
-        const eventos = await Evento.find().populate(['organizador', 'categoria']);
+        const eventos = await Evento.find().populate('categoria');
 
         return res.status(200).json(eventos);
     } catch (error) {
@@ -43,7 +38,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-        const evento = await Evento.findById(req.params.id).populate(['organizador', 'categoria']);
+        const evento = await Evento.findById(req.params.id).populate('categoria');
 
         if (!evento)
             return res.status(404).json({ message: 'Evento not found' });
@@ -64,14 +59,6 @@ async function update(req, res) {
             if (eventoExists) {
                 return res.status(400).json({ message: 'Evento already exists' });
             }
-        }
-
-        // Se passou um organizador diferente do atual ele
-        // checa se já existe uma evento no banco
-        if (req.body.organizador !== evento.organizador) {
-            // Checando se passou um organizador valido
-            if (!await Organizador.findById(req.body.organizador))
-                return res.status(405).json({ message: 'Organizador not valid' });
         }
 
         if (req.body.categoria !== null) {
